@@ -1,11 +1,26 @@
+#####################
+# Code Overview
+#   Run this code by entering the following into the terminal:
+#   streamlit run "path_to_code"
+# This should prompt you a url to view the map.
+# More instructions on how to install libraries are in the github README.md
+######################
+
+
 import googlemaps
 import pandas as pd
 import folium 
 from folium.plugins import FeatureGroupSubGroup
 import streamlit as st
 from streamlit_folium import st_folium
+import yaml
 
-gmaps = googlemaps.Client(key="AIzaSyAOm7bE-d7sQtbi9d-yH7Dx9vcQT8MMR0A")
+
+with open('config.yaml', "r") as file:
+    config = yaml.safe_load(file)
+    api_key = config.get("api_key")
+
+gmaps = googlemaps.Client(key=api_key)
 ingham_county = gmaps.geocode('Ingham County, MI')
 
 lat, long = ingham_county[0]['geometry']['location']['lat'], ingham_county[0]['geometry']['location']['lng']
