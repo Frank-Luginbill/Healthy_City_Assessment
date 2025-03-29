@@ -19,15 +19,4 @@ Ground rules for maintaining this repository:
 3. Open an conda command prompt and navigate to the project folder. (This can be done using the command: cd <PATH>)
 4. Create a project specific conda environment by running the following command from the unzipped folder conda env create --prefix ./envs --file environment.yml
 5. Activate the conda environment using the following command: conda activate ./envs
-6. Before you are able to run the map through the conda command prompt you must create a google maps API key. Instructions can be found [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
-7. Once you have your key, create a config.yaml file and add this text, but fill in your personal key: api_key: "YOUR_SECRET_KEY"
-8. Ensure that your API key has access to these features: Places API,
-Maps Static API,
-Maps SDK for iOS,
-Maps Embed API,
-Maps Elevation API,
-Geolocation API,
-Geocoding API
-9. Now back in the conda command prompt, run the file using the command streamlit run app.py
-
-*Note: After 30 days google will require you to upgrade to a paid plan, but you will not be charged unless there's over 10,000 calls which we do not anticipate.
+6. Now, run the file using the command streamlit run app.py
