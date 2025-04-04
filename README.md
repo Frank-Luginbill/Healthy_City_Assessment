@@ -19,4 +19,5 @@ Ground rules for maintaining this repository:
 3. Open an conda command prompt and navigate to the project folder. (This can be done using the command: cd <PATH>)
 4. Create a project specific conda environment by running the following command from the unzipped folder conda env create --prefix ./envs --file environment.yml
 5. Activate the conda environment using the following command: conda activate ./envs
-6. Now, run the file using the command streamlit run app.py
+6. Download the required data and put it in the project folder. Data found in Teams Folder -> "Use These Datasets When Running Map" Folder
+7. Now, run the file using the command streamlit run app.py
