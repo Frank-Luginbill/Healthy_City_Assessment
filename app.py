@@ -140,7 +140,10 @@ rec_centers_csv = pd.read_csv("Rec Center.csv")
 soup_kitchens_csv = pd.read_csv("Soup Kitchens.csv")
 bus_stops_csv = pd.read_csv("bus_stops.csv")
 congregate_csv = pd.read_csv("Congregate Senior Dining Sites.csv")
+housing_csv = pd.read_csv("Housing Resources.csv")
 community_assistance_csv = pd.read_csv("community_centers_requested.csv")
+
+housing = get_places_pandas(housing_csv["Lat"], housing_csv["Long"], housing_csv["Name"])
 congregate = get_places_pandas(congregate_csv["Lat"], congregate_csv["Long"], congregate_csv["Name"])
 community_assist = get_places_pandas(community_assistance_csv["Lat"], community_assistance_csv["Long"], community_assistance_csv["Name"])
 libraries = get_places_pandas(libraries_csv['lat'], libraries_csv['lng'], libraries_csv['name'])
@@ -148,8 +151,6 @@ parks = get_places_pandas(parks_csv['lat'], parks_csv['lng'], parks_csv['name'])
 rec_centers = get_places_pandas(rec_centers_csv['lat'], rec_centers_csv['lng'], rec_centers_csv['name'])
 soup_kitchens = get_places_pandas(soup_kitchens_csv['lat'], soup_kitchens_csv['lng'], soup_kitchens_csv['name'])
 bus_stops = get_places_pandas(bus_stops_csv['stop_lat'], bus_stops_csv['stop_lon'], bus_stops_csv['stop_name'])
-
-print(congregate)
 
 #Save Google locations to .csv (ONCE/OLD)
 #libraries.to_csv("Libraries.csv")
@@ -159,11 +160,12 @@ print(congregate)
 
 
 # Define feature groups for different layers
-layer_community = folium.FeatureGroup(name="Community Connections", show=False)
+layer_community = folium.FeatureGroup(name="Community Centers", show=False)
 layer_libraries = folium.FeatureGroup(name="Libraries", show=False)
 layer_parks_rec = folium.FeatureGroup(name="Parks & Recreation", show=False)
 layer_food_assistance = folium.FeatureGroup(name="Food Assistance", show=False)
 layer_transportation = folium.FeatureGroup(name="Transportation", show=False)
+layer_housing = folium.FeatureGroup(name="Housing Assistance", show=False)
 
 # Subgroups for more organization
 libraries_layer = FeatureGroupSubGroup(layer_libraries, "Libraries")
@@ -173,6 +175,7 @@ rec_centers_layer = FeatureGroupSubGroup(layer_parks_rec, "Recreation Centers")
 soup_layer = FeatureGroupSubGroup(layer_food_assistance, "Soup Kitchens")
 dining_sites_layer = FeatureGroupSubGroup(layer_food_assistance, "Congregate Dining Sites")
 bus_stops_layer = FeatureGroupSubGroup(layer_transportation, "Bus Stops")
+housing_layer = FeatureGroupSubGroup(layer_housing, "Housing Assistance")
 
 
 # Add places to layers
@@ -225,6 +228,13 @@ for place in bus_stops:
         icon=folium.Icon(color="lightblue", icon="bus", prefix="fa")
     ).add_to(bus_stops_layer)
 
+for place in housing:
+    folium.Marker(
+        location=[place["lat"], place["lng"]],
+        popup=folium.Popup(place["name"], parse_html=True),
+        icon=folium.Icon(color="red", icon="house-chimney", prefix="fa")
+    ).add_to(housing_layer)
+
 
 
 # Add layers to map
@@ -244,6 +254,9 @@ layer_food_assistance.add_child(dining_sites_layer)
 
 m.add_child(layer_transportation)
 layer_transportation.add_child(bus_stops_layer)
+
+m.add_child(layer_housing)
+layer_housing.add_child(housing_layer)
 
 # Add layer control to toggle visibility
 folium.LayerControl(collapsed=False).add_to(m)
