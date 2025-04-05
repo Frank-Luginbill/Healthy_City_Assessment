@@ -11,4 +11,5 @@ dependencies:
     - streamlit_folium
     - numpy
     - pyyaml
+    - geopandas
   - python==3.9.12
