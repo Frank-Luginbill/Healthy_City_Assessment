@@ -16,8 +16,10 @@ Ground rules for maintaining this repository:
 ### Running Locally
 1. Clone or unzip the project repository into a folder on your computer. Use command: git clone https://github.com/Frank-Luginbill/Healthy_City_Assessment
 2. Download and install the [condaforge](https://conda-forge.org/) software for your OS. Follow default install instructions.
-3. Open an conda command prompt and navigate to the project folder. (This can be done using the command: cd <PATH>)
-4. Create a project specific conda environment by running the following command from the unzipped folder conda env create --prefix ./envs --file environment.yml
-5. Activate the conda environment using the following command: conda activate ./envs
-6. Download the required data and put it in the project folder. Data found in Teams Folder -> "Use These Datasets When Running Map" Folder
-7. Now, run the file using the command streamlit run app.py
+3. When you are installing on Mac make sure you say yes to having conda be installed on your current shell.
+4. Open an conda command prompt on windows, or terminal on mac, and navigate to the project folder. (This can be done using the command: cd <PATH>)
+5. Create a project specific conda environment by running the following command from the unzipped folder conda env create --prefix ./envs --file environment.yml
+6. Activate the conda environment using the following command: conda activate ./envs
+7. Download the required data and put it in the project folder. Data found in Teams Folder -> "Use These Datasets When Running Map" Folder
+8. Make sure ALL the files from that folder are individually within the project folder, NOT just moving the "Use These Datasets.." folder into the project folder.
+9. Now, run the file using the command streamlit run app.py
