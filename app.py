@@ -136,11 +136,11 @@ def get_places_pandas(lat_series, lng_series, name_series):
 # Fetch locations
 libraries_csv = pd.read_csv("Libraries.csv")
 parks_csv = pd.read_csv("Parks.csv")
-rec_centers_csv = pd.read_csv("Rec Center.csv")
-soup_kitchens_csv = pd.read_csv("Soup Kitchens.csv")
+rec_centers_csv = pd.read_csv("Rec_Center.csv")
+soup_kitchens_csv = pd.read_csv("Soup_Kitchens.csv")
 bus_stops_csv = pd.read_csv("bus_stops.csv")
-congregate_csv = pd.read_csv("Congregate Senior Dining Sites.csv")
-housing_csv = pd.read_csv("Housing Resources.csv")
+congregate_csv = pd.read_csv("Congregate_Senior Dining_Sites.csv")
+housing_csv = pd.read_csv("Housing_Resources.csv")
 community_assistance_csv = pd.read_csv("community_centers_requested.csv")
 
 housing = get_places_pandas(housing_csv["Lat"], housing_csv["Long"], housing_csv["Name"])
@@ -155,8 +155,8 @@ bus_stops = get_places_pandas(bus_stops_csv['stop_lat'], bus_stops_csv['stop_lon
 #Save Google locations to .csv (ONCE/OLD)
 #libraries.to_csv("Libraries.csv")
 #parks.to_csv("Parks.csv")
-#rec_centers.to_csv("Rec Center.csv")
-#soup_kitchens.to_csv("Soup Kitchens.csv")'
+#rec_centers.to_csv("Rec_Center.csv")
+#soup_kitchens.to_csv("Soup_Kitchens.csv")'
 
 
 # Define feature groups for different layers
