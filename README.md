@@ -13,7 +13,7 @@ Ground rules for maintaining this repository:
 ## Code Files
 1. app.py - Runs the streamlit map.
 2. getting_bus_stops.ipynb - Code used to pull bus stops without API key.
-3. 
+3. census_data_cleaning.ipynb - Code used to clean census data files that were pulled from the 2023 census data.
 
 ## Map Usage & Installation Instructions
 [The map is currently available at this link](https://msu-healthy-city-map.streamlit.app/)
