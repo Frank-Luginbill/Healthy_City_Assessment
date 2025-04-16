@@ -293,4 +293,5 @@ st.title("MSU Healthy City Assessment Map")
 folium_static(m, width=700)
 
 """This map was created by an MSU Data Science Capstone team in conjunction with the Center for Community and Economic Development at MSU. 
-Its purpose is to serve as a data coverage map. It maps available resources for seniors that live within the Lansing area, with the goal to drive policy or systemic change in the area."""
+Its purpose is to serve as a data coverage map. It maps available resources for seniors that live within the Lansing area, with the goal to drive policy or systemic change in the area.
+Code repository here: https://github.com/Frank-Luginbill/Healthy_City_Assessment """
