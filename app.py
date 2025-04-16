@@ -18,11 +18,11 @@ min_lat, max_lat = 42.4219371, 42.776639
 #Census Tract Info
 green_zones = ["26065003301", "26065006600", "26065006700", "26065003700", "26065003602",
 "26065005100", "26065005303", "26065005402", "26065004301"]
-gdf = gpd.read_file("PVS_24_v2_tracts2020_26.shp")
+gdf = gpd.read_file("data/PVS_24_v2_tracts2020_26.shp")
 gdf = gdf[gdf['TRACTID'].isin(green_zones)]
 
 #Green Zones Demographic Info
-elderly = pd.read_csv('elderly_data_complete.csv')
+elderly = pd.read_csv('data/elderly_data_complete.csv')
 elderly = elderly[elderly['GEO_ID'].isin(green_zones)]
 elderly['GEO_ID'] = elderly['GEO_ID'].astype(str)
 elderly = elderly.rename(columns={"GEO_ID": "TRACTID"})
@@ -134,14 +134,14 @@ def get_places_pandas(lat_series, lng_series, name_series):
     return locations
 
 # Fetch locations
-libraries_csv = pd.read_csv("Libraries.csv")
-parks_csv = pd.read_csv("Parks.csv")
-rec_centers_csv = pd.read_csv("Rec_Center.csv")
-soup_kitchens_csv = pd.read_csv("Soup_Kitchens.csv")
-bus_stops_csv = pd.read_csv("bus_stops.csv")
-congregate_csv = pd.read_csv("Congregate_Senior_Dining_Sites.csv")
-housing_csv = pd.read_csv("Housing_Resources.csv")
-community_assistance_csv = pd.read_csv("community_centers_requested.csv")
+libraries_csv = pd.read_csv("data/Libraries.csv")
+parks_csv = pd.read_csv("data/Parks.csv")
+rec_centers_csv = pd.read_csv("data/Rec_Center.csv")
+soup_kitchens_csv = pd.read_csv("data/Soup_Kitchens.csv")
+bus_stops_csv = pd.read_csv("data/bus_stops.csv")
+congregate_csv = pd.read_csv("data/Congregate_Senior_Dining_Sites.csv")
+housing_csv = pd.read_csv("data/Housing_Resources.csv")
+community_assistance_csv = pd.read_csv("data/community_centers_requested.csv")
 
 housing = get_places_pandas(housing_csv["Lat"], housing_csv["Long"], housing_csv["Name"])
 congregate = get_places_pandas(congregate_csv["Lat"], congregate_csv["Long"], congregate_csv["Name"])
