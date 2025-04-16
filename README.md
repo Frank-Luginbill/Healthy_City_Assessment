@@ -10,6 +10,11 @@ Ground rules for maintaining this repository:
 1. If you add, remove, or edit any folders, make sure to document it above so that we can keep track of it.
 2. For handling weekly work, make a branch to work locally, and then when we meet in class we can discuss the changes made and merge it together
 
+## Code Files
+1. app.py - Runs the streamlit map.
+2. getting_bus_stops.ipynb - Code used to pull bus stops without API key.
+3. 
+
 ## Map Usage & Installation Instructions
 [The map is currently available at this link](https://msu-healthy-city-map.streamlit.app/)
 
