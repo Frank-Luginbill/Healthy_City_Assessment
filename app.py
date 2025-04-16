@@ -141,9 +141,13 @@ soup_kitchens_csv = pd.read_csv("data/Soup_Kitchens.csv")
 bus_stops_csv = pd.read_csv("data/bus_stops.csv")
 congregate_csv = pd.read_csv("data/Congregate_Senior_Dining_Sites.csv")
 housing_csv = pd.read_csv("data/Housing_Resources.csv")
+sub_csv = pd.read_csv("data/Subsidized_Senior_Housing.csv")
+afford_csv = pd.read_csv("data/Affordable_Senior_Housing.csv")
 community_assistance_csv = pd.read_csv("data/community_centers_requested.csv")
 
 housing = get_places_pandas(housing_csv["Lat"], housing_csv["Long"], housing_csv["Name"])
+sub_housing = get_places_pandas(sub_csv["Lat"], sub_csv["Long"], sub_csv["Name"])
+afford_housing = get_places_pandas(afford_csv["Lat"], afford_csv["Long"], afford_csv["Name"])
 congregate = get_places_pandas(congregate_csv["Lat"], congregate_csv["Long"], congregate_csv["Name"])
 community_assist = get_places_pandas(community_assistance_csv["Lat"], community_assistance_csv["Long"], community_assistance_csv["Name"])
 libraries = get_places_pandas(libraries_csv['lat'], libraries_csv['lng'], libraries_csv['name'])
@@ -166,6 +170,8 @@ layer_parks_rec = folium.FeatureGroup(name="Parks & Recreation", show=False)
 layer_food_assistance = folium.FeatureGroup(name="Food Assistance", show=False)
 layer_transportation = folium.FeatureGroup(name="Transportation", show=False)
 layer_housing = folium.FeatureGroup(name="Housing Assistance", show=False)
+layer_subsidized = folium.FeatureGroup(name="Subsidized Senior Housing", show=False)
+layer_affordable = folium.FeatureGroup(name="Affordable Senior Housing", show=False)
 
 # Subgroups for more organization
 libraries_layer = FeatureGroupSubGroup(layer_libraries, "Libraries")
@@ -176,6 +182,8 @@ soup_layer = FeatureGroupSubGroup(layer_food_assistance, "Soup Kitchens")
 dining_sites_layer = FeatureGroupSubGroup(layer_food_assistance, "Congregate Dining Sites")
 bus_stops_layer = FeatureGroupSubGroup(layer_transportation, "Bus Stops")
 housing_layer = FeatureGroupSubGroup(layer_housing, "Housing Assistance")
+subsidized_layer = FeatureGroupSubGroup(layer_subsidized, "Subsidized Senior Housing")
+affordable_layer = FeatureGroupSubGroup(layer_affordable, "Affordable Senior Housing")
 
 
 # Add places to layers
@@ -235,6 +243,20 @@ for place in housing:
         icon=folium.Icon(color="red", icon="house-chimney", prefix="fa")
     ).add_to(housing_layer)
 
+for place in sub_housing:
+    folium.Marker(
+        location=[place["lat"], place["lng"]],
+        popup=folium.Popup(place["name"], parse_html=True),
+        icon=folium.Icon(color="pink", icon="house-user", prefix="fa")
+    ).add_to(subsidized_layer)
+
+for place in afford_housing:
+    folium.Marker(
+        location=[place["lat"], place["lng"]],
+        popup=folium.Popup(place["name"], parse_html=True),
+        icon=folium.Icon(color="lightred", icon="dollar-sign", prefix="fa")
+    ).add_to(affordable_layer)
+
 
 
 # Add layers to map
@@ -258,8 +280,17 @@ layer_transportation.add_child(bus_stops_layer)
 m.add_child(layer_housing)
 layer_housing.add_child(housing_layer)
 
+m.add_child(layer_subsidized) 
+layer_subsidized.add_child(subsidized_layer)
+
+m.add_child(layer_affordable)
+layer_affordable.add_child(affordable_layer)
+
 # Add layer control to toggle visibility
 folium.LayerControl(collapsed=False).add_to(m)
 
 st.title("MSU Healthy City Assessment Map")
 folium_static(m, width=700)
+
+"""This map was created by an MSU Data Science Capstone team in conjunction with the Center for Community and Economic Development at MSU. 
+Its purpose is to serve as a data coverage map. It maps available resources for seniors that live within the Lansing area, with the goal to drive policy or systemic change in the area."""
