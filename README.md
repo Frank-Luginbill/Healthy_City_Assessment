@@ -26,5 +26,5 @@ Ground rules for maintaining this repository:
 5. Create a project specific conda environment by running the following command from the unzipped folder conda env create --prefix ./envs --file environment.yml
 6. Activate the conda environment using the following command: conda activate ./envs
 7. Download the required data, data found in Teams Folder -> "Use These Datasets When Running Map" Folder. Put all extracted data into the data folder and not in the github main folder so that the code correctly locates the data files.
-8. Make sure ALL the files from that folder are individually within the *data* folder, NOT just moving the "Use These Datasets.." folder into the project folder or dumping the data into the project folder.
+8. Make sure ALL the files from that folder are individually within the **data** folder, NOT just moving the "Use These Datasets.." folder into the project folder or dumping the data into the project folder.
 9. Now, run the file using the command streamlit run app.py
