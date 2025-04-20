@@ -13,7 +13,7 @@ Ground rules for maintaining this repository:
 ## Code Files
 1. app.py - Runs the streamlit map.
 2. getting_bus_stops.ipynb - Code used to pull bus stops without API key.
-3. census_data_cleaning.ipynb - Code used to clean census data files that were pulled from the 2023 census data.
+3. census_data_cleaning.ipynb - Code used to clean census data files that were pulled from the 2023 census data. All of the data files it is requesting are found in the `Unprocessed_Datasets_(do_not_use)` folder in the Teams folder
 
 ## Map Usage & Installation Instructions
 [The map is currently available at this link](https://msu-healthy-city-map.streamlit.app/)
@@ -25,6 +25,6 @@ Ground rules for maintaining this repository:
 4. Open an conda command prompt on windows, or terminal on mac, and navigate to the project folder. (This can be done using the command: cd <PATH>)
 5. Create a project specific conda environment by running the following command from the unzipped folder conda env create --prefix ./envs --file environment.yml
 6. Activate the conda environment using the following command: conda activate ./envs
-7. Download the required data, data found in Teams Folder -> "Use These Datasets When Running Map" Folder. Put all extracted data into the data folder and not in the github main folder so that the code correctly locates the data files.
-8. Make sure ALL the files from that folder are individually within the **data** folder, NOT just moving the "Use These Datasets.." folder into the project folder or dumping the data into the project folder.
+7. If there are not multiple data files in the `data` folder, download the required data, data found in Teams Folder -> "Use These Datasets When Running Map" Folder. Put all extracted data into the data folder and not in the github main folder so that the code correctly locates the data files.
+8. Make sure ALL the files from that folder are individually within the **data** folder, as the code is using filepaths that go to the `data` folder and not the top folder that the code is sitting in.
 9. Now, run the file using the command streamlit run app.py
